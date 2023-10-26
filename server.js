@@ -5,7 +5,9 @@ const PORT = 3001;
 const path = require('path')
 const app = express();
 const fs = require('fs');
+const uuid = require('./uuid')
 console.log(db)
+
 app.use(express.static('public'));
 
 app.use(express.json());
@@ -27,12 +29,12 @@ app.get('/api/notes', (req, res) => {
 app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to add a tip`);
     
-    const { title, text  } = req.body;
+    const { title, text, id } = req.body;
     
     const newNote = {
         title,
         text,
-        
+        id : uuid()
       };
 
      
