@@ -35,7 +35,7 @@ const getNotes = () =>
       'Content-Type': 'application/json'
     }
   });
-// wret an /api/notes get request routes to server.js
+// write an /api/notes get request routes to server.js
 
 
 const saveNote = (note) =>
@@ -46,7 +46,7 @@ const saveNote = (note) =>
     },
     body: JSON.stringify(note)
   });
-// wret an /api/notes  request route
+// write an /api/notes  request route
 
 
 const deleteNote = (id) =>
