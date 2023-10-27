@@ -1,12 +1,11 @@
 const db = require('./db/db.json')
 const express = require('express');
-const util = require('node:util')
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const path = require('path')
 const app = express();
 const fs = require('fs');
 const uuid = require('./uuid')
-console.log(db)
+
 
 app.use(express.static('public'));
 
@@ -50,10 +49,17 @@ app.post('/api/notes', (req, res) => {
      });
 
 
+    //  app.delete('/db/db.json/:id', (req, res) => {
+         
+    //   const noteId = req.params.id;
+    //   newNote.filter(notedId)
+    //   fs.writeFile('/db/db.json', noteId (err) => {
 
+      
 
-
-
+    //   res.send('Item deleted');
+      
+    // });
 
 
 
