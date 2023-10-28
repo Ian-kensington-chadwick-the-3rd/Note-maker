@@ -17,7 +17,7 @@
 
 ## Description
 
-Note-maker Is a fullstack website application that uses express and node.js to save your data to to an an data base json folder.
+Note-maker Is a fullstack website application that uses express and node.js to save your data to a data base json folder.
 
 ## what I learned
 
