@@ -1,6 +1,6 @@
 const db = require('./db/db.json')
 const express = require('express');
-const PORT = process.env.PORT || 3001;
+
 const path = require('path')
 const app = express();
 const fs = require('fs');
@@ -19,6 +19,23 @@ app.get('/', (req, res) =>
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, 'public/notes.html'))
 );
+
+// app.get('/api/notes', (req, res) => {
+//     console.info(`${req.method} note made!`);
+//     fs.readFile('./db/db.json' ,  (error, data) => {
+//       if(error){
+//         console.log('error');
+//       }else {
+//         console.log(data);
+//         // res.json(data)
+//          res.json(db)
+//       }
+//      }) 
+    
+// });
+
+
+
 
 app.get('/api/notes', (req, res) => {
     console.info(`${req.method} note made!`);
@@ -48,19 +65,40 @@ app.post('/api/notes', (req, res) => {
       res.json(db)
      });
 
+    // it dont work all the way
+     app.delete('/api/notes/:id', (req, res) => {
+         const noteId = req.params.id;
+         console.log('this is NOTEID:',noteId)
+          fs.readFile('./db/db.json', 'utf-8', (error, data) => {
+         if(error) {
+          console.log('error reading file')
+         } else {
 
-    //  app.delete('/db/db.json/:id', (req, res) => {
-         
-    //   const noteId = req.params.id;
-    //   newNote.filter(notedId)
-    //   fs.writeFile('/db/db.json', noteId (err) => {
+            let parsedData = JSON.parse(data);
+            console.log('this is parsed data:', parsedData);
+           
+          let result = parsedData.filter((note) => 
+            note.id !== noteId 
+            // console.log(result); 
+          );
+          console.log('this is RESULT:',result);
+           fs.writeFile('./db/db.json' , JSON.stringify(result), (error)=> {
+            if(error){
+              console.log('error deleting file');
+            }else {
+              console.log("note deleted");
+            }
+           }) 
+         } 
+          //  console.log(data);
+          
+        })
 
+        
+        res.json(db)
       
-
-    //   res.send('Item deleted');
-      
-    // });
-
+    });
+  
 
 
 app.listen(PORT, () =>
